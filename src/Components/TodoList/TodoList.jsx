@@ -15,7 +15,7 @@ function TodoList() {
             todoList.map((todo) => {
             // console.log(todo.id);
             // console.log(todo.title);
-             return <Todo title={todo.title} key={todo.id}/>
+             return <Todo id={todo.id} title={todo.title} key={todo.id}/>
         }) }
         </>
         
