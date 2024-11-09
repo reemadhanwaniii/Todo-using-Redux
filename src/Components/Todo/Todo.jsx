@@ -1,15 +1,29 @@
 import { useDispatch } from "react-redux";
-import { removeTodo } from "../../actions/index";
+import { removeTodo,editTodo } from "../../actions/index";
 import { bindActionCreators } from "redux";
+import { useState } from "react";
 
 function Todo({ id,title }) {
     const dispatch = useDispatch();
-    const actions = bindActionCreators({ removeTodo },dispatch);
+    const actions = bindActionCreators({ removeTodo,editTodo },dispatch);
+    const [isEditting,setIsEditting] = useState(false);
+    const [edittableText,setEdittableText] = useState(title);
+
+
+    function edittTodo() {
+        if(isEditting) {
+            actions.editTodo({id: id,title: edittableText})
+            setIsEditting(false);
+        }else{
+            setIsEditting(true);
+        }
+    }
 
     return(
         <div>
-            {title}
+            {(isEditting) ? <input value={edittableText} onChange={(e) => setEdittableText(e.target.value)}/> : title}
             <button onClick={() => actions.removeTodo(id)}>Delete</button>
+            <button onClick={edittTodo}>{(isEditting)?'Save':'Edit'}</button>
         </div>
     )
 }
