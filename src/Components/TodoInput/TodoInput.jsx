@@ -6,7 +6,7 @@ import todoSlice from "../../slices/todoSlice";
 function TodoInput() {
 
     const [todoText,setTodoText] = useState("");
-    const todoList = useSelector((state) => state.todos)
+    const todoList = useSelector((state) => state.todos.value)
     const dispatch = useDispatch();
     
 

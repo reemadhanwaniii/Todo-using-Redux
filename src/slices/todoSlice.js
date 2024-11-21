@@ -3,10 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const todoSlice = createSlice({
   name: 'todos',
-  initialState: [],
+  initialState: {value: []},
   reducers: {
     addTodo: (state,action) => {
-        state.push({id: action.payload.id, title: action.payload.title})
+        state.value.push({id: action.payload.id, title: action.payload.title})
         /**
          * here we can return new state object as we previously do we treat them as immutable so we used to return a brand new one
          * but what redux toolkit says we don't always need to return new state object
@@ -15,10 +15,10 @@ const todoSlice = createSlice({
          */
     },
     removeTodo: (state,action) => {
-        return state.filter((todo)=> todo.id !== action.payload)
+        state.value = state.value.filter((todo)=> todo.id !== action.payload)
     },
     editTodo: (state,action) => {
-        state = state.map((todo) => {
+        state.value = state.value.map((todo) => {
             if(todo.id === action.payload.id) 
                 todo.title = action.payload.title;
             return todo;

@@ -4,7 +4,7 @@ import TodoInput from "../TodoInput/TodoInput";
 
 function TodoList() {
 
-    const todoList = useSelector((state) => state.todos).flat();
+    const todoList = useSelector((state) => state.todos.value).flat();
 
     console.log(todoList);
 
