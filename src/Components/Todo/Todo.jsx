@@ -1,11 +1,15 @@
 import { useDispatch } from "react-redux";
-import { removeTodo,editTodo } from "../../actions/index";
+//import { removeTodo,editTodo } from "../../actions/index";
+import todoSlice from "../../slices/todoSlice";
 import { bindActionCreators } from "redux";
 import { useState } from "react";
 
 function Todo({ id,title }) {
     const dispatch = useDispatch();
+
+    const {editTodo,removeTodo} = todoSlice.actions;
     const actions = bindActionCreators({ removeTodo,editTodo },dispatch);
+    
     const [isEditting,setIsEditting] = useState(false);
     const [edittableText,setEdittableText] = useState(title);
 
